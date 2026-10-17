@@ -1,0 +1,79 @@
+* { box-sizing: border-box; }
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+html, body { margin: 0; width: 100%; height: 100%; background: #07090f; overflow: hidden; }
+body { color: #f7f8ff; }
+.stage {
+  position: relative; width: 100%; height: 100dvh; overflow: hidden;
+  display: grid; place-items: center;
+  background:
+    radial-gradient(ellipse at 70% 15%, rgba(82, 87, 160, .25), transparent 45%),
+    radial-gradient(ellipse at 20% 90%, rgba(36, 111, 130, .18), transparent 45%),
+    #07090f;
+}
+.ambient { position: absolute; border-radius: 50%; filter: blur(75px); opacity: .3; pointer-events: none; }
+.ambient-one { width: 34vw; height: 34vw; background: #6569db; top: -15vw; right: 5vw; }
+.ambient-two { width: 28vw; height: 28vw; background: #21a5a4; bottom: -15vw; left: 20vw; }
+
+.video-frame {
+  position: relative;
+  width: min( min(100vw, 100vh), 100vmin );
+  height: min( min(100vw, 100vh), 100vmin );
+  aspect-ratio: 1 / 1;
+  display: grid; place-items: center;
+  border-radius: 2px;
+  overflow: hidden;
+  background: rgba(0,0,0,.55);
+  box-shadow: 0 20px 100px rgba(0,0,0,.48);
+  z-index: 1;
+}
+#videoPlayer { display: none; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.empty-state { padding: 24px; text-align: center; color: rgba(255,255,255,.8); }
+.empty-state h1 { font-size: clamp(1.3rem, 3vw, 2.2rem); margin: 14px 0 8px; font-weight: 600; }
+.empty-state p { color: rgba(255,255,255,.58); margin: 0 0 20px; }
+.empty-state small { color: rgba(255,255,255,.4); }
+.play-mark { margin: auto; width: 56px; height: 56px; display: grid; place-items: center; border: 1px solid #ffffff40; border-radius: 50%; color: white; padding-left: 3px; }
+
+.sidebar {
+  position: fixed; z-index: 5; top: 18px; bottom: 18px; left: 18px;
+  width: 268px; padding: 18px 14px 12px;
+  display: flex; flex-direction: column; gap: 16px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 26px;
+  background: linear-gradient(135deg, rgba(255,255,255,.17), rgba(255,255,255,.055));
+  box-shadow: 0 12px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.17);
+  backdrop-filter: blur(28px) saturate(155%);
+  -webkit-backdrop-filter: blur(28px) saturate(155%);
+}
+.brand { display: flex; align-items: center; gap: 10px; padding: 4px 7px 13px; border-bottom: 1px solid rgba(255,255,255,.13); }
+.brand-icon { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 12px; background: rgba(255,255,255,.15); font-size: 23px; }
+.brand strong { display: block; font-size: 11px; letter-spacing: 1.5px; }
+.brand span { display: block; margin-top: 4px; color: rgba(255,255,255,.5); font-size: 9px; letter-spacing: 1.7px; }
+#categoryList { flex: 1; min-height: 0; overflow-y: auto; padding-right: 3px; scrollbar-width: thin; scrollbar-color: #ffffff35 transparent; }
+.category { margin-bottom: 12px; }
+.category-title { padding: 7px 9px; color: rgba(255,255,255,.46); font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; }
+.video-button {
+  width: 100%; display: flex; align-items: center; gap: 10px;
+  border: 1px solid transparent; border-radius: 12px; padding: 10px 11px;
+  color: rgba(255,255,255,.77); background: transparent; text-align: left;
+  font: inherit; font-size: 12px; cursor: pointer; transition: .18s ease;
+}
+.video-button .number { color: rgba(255,255,255,.35); font-size: 10px; width: 18px; }
+.video-button:hover { background: rgba(255,255,255,.09); color: white; }
+.video-button.active { color: white; background: rgba(255,255,255,.17); border-color: rgba(255,255,255,.2); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+.video-button.active .number { color: #b9caff; }
+.sidebar-footer { border-top: 1px solid rgba(255,255,255,.13); padding: 12px 8px 2px; color: rgba(255,255,255,.36); font-size: 9px; letter-spacing: 1.7px; }
+
+@media (max-width: 650px) {
+  .sidebar { top: auto; bottom: 10px; left: 10px; right: 10px; width: auto; height: 42dvh; min-height: 230px; border-radius: 22px; padding: 12px; gap: 8px; }
+  .brand { padding-bottom: 8px; }
+  #categoryList { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; }
+  .category { margin-bottom: 5px; }
+  .category-title { padding: 5px 7px; font-size: 9px; }
+  .video-button { padding: 7px; font-size: 11px; gap: 6px; }
+  .video-button .number { width: 14px; }
+  .sidebar-footer { padding-top: 7px; }
+  .video-frame { width: 100vmin; height: 100vmin; max-width: 100vw; max-height: 100vw; }
+}

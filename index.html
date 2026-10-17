@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Video Library</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="stage">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <div class="video-frame" id="videoFrame">
+      <video id="videoPlayer" controls playsinline preload="metadata">
+        Your browser does not support HTML video.
+      </video>
+      <div class="empty-state" id="emptyState">
+        <div class="play-mark">▶</div>
+        <h1>Choose a video</h1>
+        <p>Pick a button from the glass sidebar.</p>
+        <small>Add your MP4 files to the <code>videos</code> folder.</small>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">◈</div>
+        <div><strong>VIDEO LIBRARY</strong><span>YOUR COLLECTION</span></div>
+      </div>
+      <nav id="categoryList" aria-label="Video categories"></nav>
+      <div class="sidebar-footer">25 VIDEO SLOTS</div>
+    </aside>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
